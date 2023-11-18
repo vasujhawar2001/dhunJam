@@ -20,16 +20,17 @@ const Login = () => {
         password,
       });
 
+      const {data} = response.data;
+
       if (response.data.status === 200) {
         console.log('Authentication successful');
-        console.log('User ID:', response.data.data.id);
-        console.log('Token:', response.data.data.token);
+        console.log('User ID:', data.id);
 
-        localStorage.setItem('authToken', response.data.data.token);
+        localStorage.setItem('authToken', data.token);
 
         login({
             user: {
-              id: response.data.data.id,
+              id: data.id,
             }
           });
   

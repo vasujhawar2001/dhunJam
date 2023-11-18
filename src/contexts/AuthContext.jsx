@@ -3,7 +3,6 @@ import React, { createContext, useContext, useReducer } from 'react';
 const initialState = {
   isAuthenticated: false,
   user: null,
-  token: null,
 };
 
 // actions
@@ -19,7 +18,6 @@ const authReducer = (state, action) => {
         ...state,
         isAuthenticated: true,
         user: action.payload.user,
-        token: action.payload.token,
       };
 
     case AUTH_ACTIONS.LOGOUT:
