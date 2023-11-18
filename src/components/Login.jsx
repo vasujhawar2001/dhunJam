@@ -1,19 +1,45 @@
-// Login.js
-
 import React, { useState } from 'react';
 import { Icon } from 'react-icons-kit';
 import { eyeOff } from 'react-icons-kit/feather/eyeOff';
 import { eye } from 'react-icons-kit/feather/eye';
-import '../App.css';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const {login} = useAuth();
 
-  const handleSignIn = () => {
-    // Add your authentication logic here
-    console.log('Signing in with:', username, password);
+  const handleSignIn = async () => {
+    try {
+      const response = await axios.post('https://stg.dhunjam.in/account/admin/login', {
+        username,
+        password,
+      });
+
+      if (response.data.status === 200) {
+        console.log('Authentication successful');
+        console.log('User ID:', response.data.data.id);
+        console.log('Token:', response.data.data.token);
+
+        localStorage.setItem('authToken', response.data.data.token);
+
+        login({
+            user: {
+              id: response.data.data.id,
+            }
+          });
+  
+        navigate('/admin-dashboard');
+
+      }
+
+    } catch (error) {
+      console.error('Authentication failed. Error during authentication:', error);
+    }
   };
 
   const handleTogglePassword = () => {
@@ -23,7 +49,7 @@ const Login = () => {
   return (
     <div className="login-container">
         <div>
-        <h1 style={{fontSize: "36px", marginBottom: "40px"}}>
+        <h1 style={{fontSize: "36px", marginBottom: "40px", fontWeight:"bold", maxWidth:"600px"}}>
             Venue Admin Login </h1>
         </div>
         <div className="form-container">
@@ -45,7 +71,7 @@ const Login = () => {
               className="input"
             />
             <span className="password-toggle" onClick={handleTogglePassword}>
-              <Icon className="eye-icon" icon={showPassword ? eyeOff : eye} size={25} />
+              <Icon className="eye-icon" icon={showPassword ? eye : eyeOff} size={25} />
             </span>
           </div>
 
