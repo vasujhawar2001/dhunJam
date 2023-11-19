@@ -6,8 +6,9 @@ import { AuthProvider } from './contexts/AuthContext';
 const App = () => {
   return (
     <AuthProvider>
-      <BrowserRouter basename="/dhunJam">
+      <BrowserRouter basename='/dhunJam'>
       <Routes>
+          <Route path="/" element={<Login />} />
           <Route path="/login" element={<Login />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
         </Routes>
