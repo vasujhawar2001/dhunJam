@@ -11,7 +11,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
-  const {login} = useAuth();
+  const {login, isAuthenticated, logout} = useAuth();
 
   const handleSignIn = async () => {
     try {
@@ -47,9 +47,19 @@ const Login = () => {
     setShowPassword(!showPassword);
   };
 
+  if(isAuthenticated){
+    return(
+        <div className='login-container' style={{marginTop: "80px"}}>
+        Already logged In. Go to the Dashboard.
+        <button className='logout-button' onClick={() => navigate('/admin-dashboard')}>Admin DashBoard</button>
+          <button className='logout-button' onClick={() => logout()}>Logout</button>
+        </div>
+    )
+  }
+
   return (
     <div className="login-container">
-        <div>
+        <div>  
         <h1 style={{fontSize: "36px", marginBottom: "40px", fontWeight:"bold", maxWidth:"600px"}}>
             Venue Admin Login </h1>
         </div>
@@ -80,7 +90,7 @@ const Login = () => {
             Sign In
           </button>
           <div className="registration-link">
-            <a href="#" style={{"text-decoration":"none", "color": "white"}}>New registration?</a>
+            <a href="#" style={{"color": "white"}}>New registration?</a>
           </div>
         </div>
     </div>

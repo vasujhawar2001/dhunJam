@@ -7,6 +7,11 @@ body {
   color: white;
 }
 
+h1{
+  font-size: 36px;
+  text-align: center;
+}
+
 .login-container {
   margin-top: 275px;
   width: 100%;
@@ -65,3 +70,112 @@ body {
   margin-top: 10px;
 }
 
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+  padding: 20px;
+}
+
+
+/* Radio buttons */
+.charge-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.charge-container label {
+  text-align: left;
+}
+
+.charge-container input[type="radio"] {
+  background-color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 50%;
+  margin: 5px;
+}
+
+.charge-container input[type="radio"]:checked {
+  background-color: #6741D9;
+  border: 1px solid #6741D9;
+  color: #FFFFFF;
+}
+
+/* Text/Input fields */
+
+.field-container{
+  display: block;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-right: 40px;
+  padding: 20px;
+}
+
+.field-container input[type="number"] {
+
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #030303;
+  color: white;
+  margin-left: 80px;
+}
+
+.regular-amounts-container {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.regular-amounts-container label {
+  display: flex;
+  text-align: left;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  align-items: center;
+}
+
+
+.regular-amounts-inputs input {
+  width: 60px; /* Adjust the width as needed */
+  border: 1px solid #FFFFFF;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  margin-bottom: 10px;
+  background-color: #030303;
+  color: white;
+}
+
+
+/* Save button */
+.save-button, .logout-button {
+  background-color: #6741D9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  width: 600px;
+}
+
+.save-button:disabled,
+.save-button[disabled] {
+  background-color: #C2C2C2;
+  cursor: not-allowed;
+}
+
+.save-button:hover:disabled,
+.save-button:hover[disabled],
+.save-button:active:disabled,
+.save-button:active[disabled] {
+  background-color: #C2C2C2;
+  border: 1px solid #F0C3F1;
+}
