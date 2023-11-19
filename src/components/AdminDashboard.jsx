@@ -24,7 +24,7 @@ ChartJS.register(
   Legend
 );
 
-export const options = {
+export const graphOptions = {
   responsive: true,
   plugins: {
     legend: {
@@ -32,29 +32,9 @@ export const options = {
     },
     title: {
       display: true,
-      text: 'Chart.js Bar Chart',
     },
   },
 };
-
-const labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-
-export const data = {
-  labels,
-  datasets: [
-    {
-      label: 'Dataset 1',
-      data: labels.map(() => 50),
-      backgroundColor: 'rgba(255, 99, 132, 0.5)',
-    },
-    {
-      label: 'Dataset 2',
-      data: labels.map(() => 100),
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
-    },
-  ],
-};
-
 
 const AdminDashboard = () => {
   const { isAuthenticated, user, logout } = useAuth();
@@ -65,6 +45,20 @@ const AdminDashboard = () => {
   const [customAmount, setCustomAmount] = useState(0);
   const [regularAmounts, setRegularAmounts] = useState([0,0,0,0]);
   const [saveButtonDisabled, setSaveButtonDisabled] = useState(true);
+
+  const labels = ['Custom', 'Category-1', 'Category-2', 'Category-3', 'Category-4'];
+  
+  const barData = {
+    labels,
+    datasets: [
+      {
+        label: "Dhunjam",
+        data: [customAmount, ...regularAmounts],
+        backgroundColor: 'pink',
+        barThickness: 50,
+      }
+    ],
+  };
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -205,7 +199,8 @@ const AdminDashboard = () => {
             </label>
           </div>
 
-          {chargeCustomers && <Bar options={options} data={data} />}
+          {chargeCustomers && <Bar options={graphOptions} data={barData} />}
+
           <div style={{marginTop: "80px"}}>
           <button className='save-button' onClick={handleSave} disabled={saveButtonDisabled}>
             Save
